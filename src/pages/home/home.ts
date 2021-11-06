@@ -29,4 +29,8 @@ export class HomePage {
 
   }
 
+  removeItem(item) {
+    console.log("Removing Item - ", item);
+  }
+
 }
