@@ -22,11 +22,11 @@ export class HomePage {
     },
     {
       name: "Eggs",
-      quantity: 24
+      quantity: 3
     },
     {
       name: "Juice",
-      quantity: 3
+      quantity: 4
     },
 
   ];
