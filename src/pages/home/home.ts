@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { GroceriesServiceProvider } from '../../providers/groceries-service/groceries-service';
 
 @Component({
   selector: 'page-home',
@@ -11,26 +12,12 @@ export class HomePage {
 
   title = "Grocery List"
 
-  items = [
-    {
-      name: "Milk",
-      quantity: 1
-    },
-    {
-      name: "Bread",
-      quantity: 2
-    },
-    {
-      name: "Eggs",
-      quantity: 3
-    },
-    {
-      name: "Juice",
-      quantity: 4
-    },
-  ];
 
-  constructor(public navCtrl: NavController, public toastController: ToastController, public alertController: AlertController) {
+  constructor(public navCtrl: NavController, public toastController: ToastController, public alertController: AlertController, public dataService: GroceriesServiceProvider) {
+  }
+
+  loadItems() {
+    return this.dataService.getItems();
   }
 
   //Removing Items from Grocery List
@@ -41,7 +28,8 @@ export class HomePage {
       duration: 5000
     });
     toast.present();
-    this.items.splice(index, 1);
+
+    this.dataService.removeItem(index);
   }
 
   editItem(item, index) {
@@ -80,7 +68,7 @@ export class HomePage {
               duration: 5000
             });
             toast.present();
-            this.items.push(item);
+            this.dataService.addItem(item);
           }
         },
         {
@@ -125,7 +113,7 @@ export class HomePage {
               duration: 5000
             });
             toast.present();
-            this.items[index] = item;
+            this.dataService.editItem(item, index);
           }
         },
         {
