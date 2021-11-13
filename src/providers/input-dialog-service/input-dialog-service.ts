@@ -67,7 +67,7 @@ export class InputDialogServiceProvider {
                 message: 'Editing Item - ' + item.name + "...",
                 duration: 5000
               });
-              //toast.present();
+              toast.present();
             }
             else {
               this.dataService.addItem(item);
@@ -75,9 +75,8 @@ export class InputDialogServiceProvider {
                 message: 'Adding Item - ' + item.name + "...",
                 duration: 5000
               });
-              //toast.present();
+              toast.present();
             }
-            toast.present();
           },
         },
         {
