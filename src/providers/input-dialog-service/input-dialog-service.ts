@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Component } from '@angular/core';
-import { AlertController, Backdrop } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { GroceriesServiceProvider } from '../../providers/groceries-service/groceries-service';
 
