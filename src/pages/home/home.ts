@@ -4,7 +4,7 @@ import { ToastController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { GroceriesServiceProvider } from '../../providers/groceries-service/groceries-service';
 import { InputDialogServiceProvider } from '../../providers/input-dialog-service/input-dialog-service';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 
 @Component({
@@ -50,6 +50,7 @@ export class HomePage {
     // Check if sharing via email is supported
     this.socialSharing.share(message, subject).then(() => {
       console.log("Shared successfully!");
+      
     // Sharing via email is possible
     }).catch((error) => {
       console.error("Error while sharing.", error);
