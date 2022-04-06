@@ -33,6 +33,11 @@
           <ion-icon name="create"></ion-icon>
           EDIT
         </ion-button>
+
+        <ion-button (click)="shareItem(item, i)" color="light" icon-start>
+          <ion-icon name="share"></ion-icon>
+          SHARE
+        </ion-button>
         
         <ion-button (click)="removeItem(item, i)" color="secondary" icon-start>
           <ion-icon name="trash"></ion-icon>
