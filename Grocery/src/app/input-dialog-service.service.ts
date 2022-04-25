@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { GroceriesServiceService } from './groceries-service.service';
 
@@ -10,7 +9,6 @@ import { GroceriesServiceService } from './groceries-service.service';
 export class InputDialogServiceService {
 
   constructor(
-    public toastCtrl: ToastController, 
     public alertCtrl: AlertController,
     public dataService: GroceriesServiceService
     ) {
@@ -20,14 +18,14 @@ export class InputDialogServiceService {
   async showPrompt(item?, index?) {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
-      header: item ? 'Edit Item': 'Add Item', //If there is no item...
-      message: item ? "Please edit item": 'Please enter item', //...add new item
+      header: item ? "Edit Item" : "Add Item", //If there is no item...
+      message: item ? "Please edit item" : "Please enter item", //...add new item
       inputs: [
         {
           name: 'name',
           type: 'text',
           placeholder: 'Name',
-          value: item ? item.name: null //if no item
+          value: item ? item.name : null //if no item
         },        
         {
           name: 'quantity',
@@ -35,27 +33,30 @@ export class InputDialogServiceService {
           placeholder: 'Quantity',
           min: 1,
           max: 10,
-          value: item ? item.quantity: null
+          value: item ? item.quantity : null
         },
-        ],
+      ],
       
       buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: (item) => {
+          handler: data => {
             console.log('Cancel clicked');
           }
-        }, {
+        }, 
+        {
           text: 'Save',
-          handler: (item) => {
-            console.log('Save clicked', item);
+          handler: data => {
+            console.log('Save Handler', data);
             if (index !== undefined) {  //If item exists
+              item.name = data.name;
+              item.quantity = data.quantity;
               this.dataService.editItem(item, index);
             }
             else {
-              this.dataService.addItem(item);
+              this.dataService.addItem(data);
             }
           }
         }
